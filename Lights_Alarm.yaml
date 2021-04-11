@@ -14,7 +14,8 @@ blueprint:
         name: Presense
         description: "When these people aren't home."
         selector:
-            entity: device_tracker
+            entity: 
+              domain: person
     target_lights:
         name: Lights
         description: "lights to flash"
@@ -41,7 +42,7 @@ condition:
   condition: and
   conditions:
     - condition: state
-      entity_id: device_tracker.ben
+      entity_id: !input presense
       state: "away"
   
 action:
