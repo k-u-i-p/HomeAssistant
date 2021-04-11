@@ -42,10 +42,9 @@ variables:
   target_lights: !input target_lights
   
 action:
-  - service: light.turn_on
+  - service: hue.hue_activate_scene
     target: !input target_lights
     data:
-      entity_id: scene.all_lights_snapshot
-      brightness: 255
-      color_name: "red"
+      group_name: "Downstairs"
+      scene_name: "Red"
       flash: long
