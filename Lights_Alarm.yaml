@@ -41,7 +41,7 @@ condition:
   condition: and
   conditions:
     - condition: state
-      entity_id: !input presense
+      entity_id: device_tracker.ben
       state: "away"
   
 action:
