@@ -10,13 +10,13 @@ blueprint:
         description: "Sensor to activate lights."
         selector:
             entity:
-    presense:
-        name: Presense
-        description: "When these people aren't home."
+    target_devices:
+        name: Devices
+        description: "When these devices aren't home."
         selector:
           target:
             entity:
-              domain: person
+              domain: device_tracker
     target_lights:
         name: Lights
         description: "lights to flash"
@@ -37,13 +37,13 @@ trigger:
 variables:
   activated: !input activated
   target_lights: !input target_lights
-  presense: !input presense
+  presense: !input target_devices
 
 condition:
   condition: and
   conditions:
     - condition: state
-      entity_id: !input presense
+      entity_id: !input target_devices
       state: "away"
   
 action:
