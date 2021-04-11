@@ -63,12 +63,14 @@ action:
   - service: light.turn_on
     target: !input target_lights
   - repeat:
-      count: 3
+      while:
+      - condition: template
+        value_template: "{{ repeat.index <= 20 }}"
       sequence:
-        - delay: 
+      - delay: 
           milliseconds: "{{ delay }}"
-        - service: light.toggle
-          target: !input target_lights
+      - service: light.toggle
+        target: !input target_lights
   - service: scene.turn_on
     data:
       entity_id: scene.all_lights_snapshot
