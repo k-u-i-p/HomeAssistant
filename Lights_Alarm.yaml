@@ -63,13 +63,12 @@ action:
   - service: light.turn_on
     target: !input target_lights
   - repeat:
-      while:
-      - count: "{{ count|int * 2 - 1 }}"
+      count: "{{ count|int * 2 - 1 }}"
       sequence:
-      - delay: 
+        - delay: 
           milliseconds: "{{ delay }}"
-      - service: light.toggle
-        target: !input target_lights
+        - service: light.toggle
+          target: !input target_lights
   - service: scene.turn_on
     data:
       entity_id: scene.all_lights_snapshot
