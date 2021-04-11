@@ -1,7 +1,7 @@
 blueprint:
   name: flashing lights
   description: >
-     Flashing lights via on off and delay and finally restore the previous light states.
+     Turn on light when motion is detected
   domain: automation
   source_url: https://github.com/k-u-i-p/HomeAssistant/edit/main/Lights_Alarm.yaml
   input:
@@ -30,37 +30,22 @@ blueprint:
 mode: restart
 max_exceeded: silent
 
+
 trigger:
   - platform: state
     entity_id: !input activated
     to: 'on'
-
+    
 variables:
   activated: !input activated
   delay: !input delay
   target_lights: !input target_lights
-
-condition: []
-
+  
 action:
-  - service: scene.create
-    data:
-        scene_id: all_lights_snapshot
-        snapshot_entities: >
-               {% set lights = states.light
-                 | map(attribute='entity_id') | join(',') %}
-                 {{lights}}
   - service: light.turn_on
     target: !input target_lights
-  - repeat:
-      while:
-      - condition: template
-        value_template: "{{ repeat.index <= 20 }}"
-      sequence:
-      - delay: 
-          milliseconds: "{{ delay }}"
-      - service: light.toggle
-        target: !input target_lights
-  - service: scene.turn_on
     data:
       entity_id: scene.all_lights_snapshot
+      brightness: 255
+      rgb_color: [255, 0, 0]
+      flash: long
