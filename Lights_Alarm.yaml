@@ -7,12 +7,17 @@ blueprint:
   input:
     activated:
         name: Activated
-        description: "Toggle to activate or deactivate flashing lights."
+        description: "Sensor to activate lights."
         selector:
             entity:
+    presense:
+        name: Presense
+        description: "When these people aren't home."
+        selector:
+            entity: person
     target_lights:
         name: Lights
-        description: "To flashing lights"
+        description: "lights to flash"
         selector:
           target:
             entity:
@@ -40,6 +45,14 @@ variables:
   activated: !input activated
   delay: !input delay
   target_lights: !input target_lights
+  presense: !input presense
+
+condition:
+  condition: and
+  conditions:
+    - condition: state
+      entity_id: !input presense
+      state: "away"
   
 action:
   - service: light.turn_on
