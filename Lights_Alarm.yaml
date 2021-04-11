@@ -27,7 +27,15 @@ blueprint:
           min: 0
           max: 20000
           unit_of_measurement: milliseconds
-
+    count:
+      name: (OPTIONAL) Count
+      description: "Number of times to Flash"
+      default: 10
+      selector:
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: times
 mode: restart
 max_exceeded: silent
 
@@ -39,6 +47,7 @@ trigger:
 variables:
   activated: !input activated
   delay: !input delay
+  count: !input count
   target_lights: !input target_lights
 
 condition: []
