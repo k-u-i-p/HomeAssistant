@@ -63,7 +63,7 @@ action:
   - service: light.turn_on
     target: !input target_lights
   - repeat:
-      count: "{{ count|int * 2 - 1 }}"
+      count: 3
       sequence:
         - delay: 
           milliseconds: "{{ delay }}"
