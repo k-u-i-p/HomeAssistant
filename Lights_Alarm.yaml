@@ -30,26 +30,18 @@ blueprint:
 mode: restart
 max_exceeded: silent
 
-
 trigger:
   - platform: state
     entity_id: !input activated
     to: 'on'
-    
+    for: 00:00:05
+
 variables:
   activated: !input activated
   delay: !input delay
   target_lights: !input target_lights
   
 action:
-  - service: light.turn_on
-    target: !input target_lights
-    data:
-      entity_id: scene.all_lights_snapshot
-      brightness: 255
-action:
-  - delay:
-      seconds: 5
   - service: light.turn_on
     target: !input target_lights
     data:
