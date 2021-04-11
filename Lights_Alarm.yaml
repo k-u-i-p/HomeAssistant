@@ -47,5 +47,5 @@ action:
     data:
       entity_id: scene.all_lights_snapshot
       brightness: 255
-      rgb_color: [255, 0, 0]
+      color_name: "red"
       flash: long
