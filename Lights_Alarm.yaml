@@ -22,15 +22,6 @@ blueprint:
           target:
             entity:
               domain: light
-    delay:
-      name: (OPTIONAL) Delay
-      description: "Delay flashing lights"
-      default: 1000
-      selector:
-        number:
-          min: 0
-          max: 20000
-          unit_of_measurement: milliseconds
 
 mode: restart
 max_exceeded: silent
@@ -43,7 +34,6 @@ trigger:
 
 variables:
   activated: !input activated
-  delay: !input delay
   target_lights: !input target_lights
   presense: !input presense
 
