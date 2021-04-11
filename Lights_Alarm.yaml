@@ -43,7 +43,6 @@ variables:
   
 action:
   - service: hue.hue_activate_scene
-    target: !input target_lights
     data:
       group_name: "Downstairs"
       scene_name: "Red"
