@@ -14,7 +14,7 @@ blueprint:
         name: Presense
         description: "When these people aren't home."
         selector:
-            entity: person
+            entity: device_tracker
     target_lights:
         name: Lights
         description: "lights to flash"
